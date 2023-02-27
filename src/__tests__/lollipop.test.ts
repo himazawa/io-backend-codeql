@@ -79,6 +79,8 @@ describe("LollipopContentDigest", () => {
 describe("LollipopSignatureInput", () => {
   it("should decode a valid signature input", async () => {
     const value = `sig1=("x-io-sign-qtspclauses");created=1675258547;nonce="aNonce";alg="ecdsa-p384-sha384";keyid="aKeyId"`;
+    const regex = new RegExp('^(([a-z])+.)+[A-Z]([a-z])+$', 'g')
+    regex.test(value)
 
     const res = LollipopSignatureInput.decode(value);
     expect(res).toMatchObject(E.right(value));
